@@ -1,0 +1,58 @@
+.footer {
+  background-color: #c4e3f8;
+  z-index: 0;
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  grid-template-areas:
+    "contact payments social"
+    "news blank blank";
+
+  text-align: center;
+  margin: 0 auto;
+}
+
+.title {
+  color: var(--azul);
+  font-size: 4em;
+  font-family: var(--oswald);
+  font-weight: 400;
+}
+.contact {
+  grid-area: contact;
+}
+.payments {
+  grid-area: payments;
+}
+.social {
+  grid-area: social;
+}
+
+.desc {
+  color: var(--azul);
+  font-size: 2em;
+}
+
+.icons svg {
+  font-size: 4em;
+  margin: 0 0.1em;
+  color: var(--azul);
+}
+
+.news {
+  grid-area: news;
+  margin-top: -30px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    grid-template-areas:
+      "contact contact contact"
+      "payments payments payments"
+      "social social social"
+      "news  news news";
+  }
+}

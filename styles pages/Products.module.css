@@ -1,0 +1,49 @@
+.filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-wrap: wrap;
+}
+
+.filter,
+.order {
+  font-size: 1.3em;
+  margin: 0 20px;
+  border: 2px solid var(--azul);
+  color: var(--azul);
+  width: 15em;
+  height: 5em;
+  border-radius: 27px;
+  text-align: left;
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+.filterIcon {
+  position: absolute;
+  font-size: 1.5em;
+  top: 18.2em;
+  pointer-events: none;
+  padding-left: 6.8em;
+  color: var(--azul);
+}
+
+.filter:hover,
+.order:hover {
+  background-color: rgba(204, 204, 204);
+  transition: all 0.3s ease;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+}
+@media (max-width: 324px) {
+  .filter {
+    margin-bottom: 20px;
+  }
+  .filterIconOrder {
+    top: 23.3em;
+  }
+}

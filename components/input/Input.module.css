@@ -1,0 +1,27 @@
+.input input {
+  border: none;
+  width: 15em;
+  height: 2.5em;
+  border-radius: 2.8em;
+  font-size: 2.5em;
+  padding-left: 20px;
+  font-family: var(--oswald);
+  background: transparent;
+  position: relative;
+
+  border: 3px solid var(--azul);
+}
+.input input::placeholder {
+  color: var(--azul);
+}
+.input input:focus {
+  outline: none;
+}
+.inputIcon {
+  position: absolute;
+  font-size: 2.5em;
+  top: 3.7em;
+  pointer-events: none;
+  padding-left: 13em;
+  color: var(--azul);
+}

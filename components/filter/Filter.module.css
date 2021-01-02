@@ -1,0 +1,68 @@
+.filter {
+  height: 200px;
+  width: 90%;
+  background-color: white;
+  text-align: center;
+  margin: 0 auto;
+  border: 1px solid #808080;
+  border-radius: 28px;
+  margin-left: 9em;
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 1;
+  box-shadow: 0px 12px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  opacity: 1;
+}
+.hide {
+  transform: translateY(-12%);
+  opacity: 0;
+}
+.filterContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.categories h1,
+.sizes h1 {
+  font-size: 3em;
+  color: var(--azul);
+}
+
+.category,
+.size {
+  max-width: 340px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.size p {
+  cursor: pointer;
+  font-size: 2.3em;
+  margin: 10px;
+  border: 2px solid var(--azul);
+  color: var(--azul);
+  border-radius: 28px;
+  padding: 10px;
+}
+.size p:hover {
+  background: var(--azul);
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+.category p {
+  cursor: pointer;
+  font-size: 2.3em;
+  margin: 10px;
+}
+.selectedCategory {
+  opacity: 0.6;
+}
+.selectedSize {
+  background: var(--azul);
+  color: white !important;
+}
+
+.category p:hover {
+  opacity: 0.6;
+  transition: all 0.3s ease-in-out;
+}
