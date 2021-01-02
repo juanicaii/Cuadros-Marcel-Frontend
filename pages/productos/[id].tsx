@@ -5,12 +5,18 @@ import { FaFilter, FaArrowDown } from "react-icons/fa";
 import Filter from "../../components/filter";
 import { useState } from "react";
 import Product from "../../components/product";
+import Pagination from "../../components/pagination";
 export default function Products() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const router = useRouter();
   const { id } = router.query;
   const openFilter = () => {
     setIsFilterOpen(!isFilterOpen);
+  };
+
+  const paginationHandler = (e) => {
+    const pageSelected = e.target.innerText;
+    router.push(`/productos/${pageSelected}`);
   };
   return (
     <>
@@ -20,7 +26,11 @@ export default function Products() {
             <TitleSection>Productos</TitleSection>
           </div>
           <div className={styles.filters}>
-            <div className={styles.filter}>
+            <div
+              className={`${styles.filter} ${
+                isFilterOpen ? styles.selected : ""
+              }`}
+            >
               <h1 onClick={openFilter}>Filtrar</h1>
               <span className={styles.filterIcon}>
                 <FaFilter />
@@ -44,6 +54,14 @@ export default function Products() {
         <Product name="Mirando al mar" image="image 1.png" />
         <Product name="Mirando al mar" image="image 1.png" />
         <Product name="Mirando al mar" image="image 1.png" />
+      </div>
+
+      <div>
+        <Pagination
+          paginationHandler={paginationHandler}
+          count={5}
+          currentPage={id}
+        />
       </div>
     </>
   );

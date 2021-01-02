@@ -1,11 +1,11 @@
 .input input {
   border: none;
   width: 15em;
-  height: 2.5em;
+  height: 40px;
   border-radius: 2.8em;
   font-size: 2.5em;
   padding-left: 20px;
-  font-family: var(--oswald);
+  font-family: var(--raleway);
   background: transparent;
   position: relative;
 

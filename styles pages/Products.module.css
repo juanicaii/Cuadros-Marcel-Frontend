@@ -18,6 +18,15 @@
   text-align: left;
   padding-left: 10px;
   cursor: pointer;
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.selected {
+  background-color: rgba(204, 204, 204);
 }
 
 .filterIcon {

@@ -1,0 +1,26 @@
+.pagination {
+  margin-top: 130px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.selected {
+  opacity: 0.6;
+}
+.page {
+  background-color: var(--azul);
+  color: white;
+  font-size: 3em;
+  border-radius: 27px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
+  margin: 2px;
+}
+.page:hover {
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}

@@ -26,14 +26,14 @@ const links = [
   { name: "Localiza tu Envio", icon: () => <FaShippingFast />, url: "/" },
 ];
 
-export const Links = ({ name, Icon, selected, url }) => {
+export const Links = ({ name, Icon, selected, url, closeNav }) => {
   return (
     <>
       <Link
         href={url === "/productos/1" ? "/productos/[id]" : url}
         as={url === "/productos/1" ? url : ""}
       >
-        <a>
+        <a onClick={closeNav}>
           <div className={`${styles.link} ${selected ? styles.selected : ""} `}>
             <Icon />
             <h4>{name}</h4>
@@ -58,14 +58,19 @@ export const Menu = ({ isOpen, closeNav }) => {
             name={link.name}
             Icon={link.icon}
             url={link.url}
+            closeNav={closeNav}
             selected={router.pathname === link.url ? true : false}
           />
         ))}
       </div>
       <div className={styles.login}>
         <FaUserCircle />
-        <h4>Iniciar Sesion</h4>
-        <h4>Crear Cuenta</h4>
+        <Link href="/iniciar-sesion">
+          <h4 className={styles.link}>Iniciar Sesion</h4>
+        </Link>
+        <Link href="/crear-cuenta">
+          <h4 className={styles.link}>Crear Cuenta</h4>
+        </Link>
       </div>
     </div>
   );
