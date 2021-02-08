@@ -1,8 +1,17 @@
 import styles from "./Button.module.css";
 
-export const Button = ({ children, buttonHandler, type = "button" }) => {
+interface IButton {
+  children: string;
+  buttonHandler?: () => {} | null;
+  type?: string;
+}
+export const Button = ({ children, buttonHandler, type }) => {
   return (
-    <button type={type} onClick={buttonHandler} className={styles.button}>
+    <button
+      type={type || "button"}
+      onClick={buttonHandler}
+      className={styles.button}
+    >
       {children}
     </button>
   );

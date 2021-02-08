@@ -3,6 +3,7 @@ import Select from "react-select";
 import Link from "next/link";
 import { useState } from "react";
 import Button from "../button";
+
 const customStyles = {
   container: (provided, state) => ({
     ...provided,
@@ -71,37 +72,44 @@ export const Product = ({ name, image }) => {
     }
   };
 
-  return (
-    <Link href="/producto/1">
-      <div className={styles.product}>
-        <div className={styles.image}>
-          <img src={`/products/${image}`} alt="" />
-        </div>
-        <div className={styles.name}>
-          <h4>{name}</h4>
-        </div>
-        <div className={styles.price}>${price}</div>
+  const addCart = () => {
+    alert("hola");
+  };
 
-        <div className={styles.sizes}>
-          <Select
-            placeholder="Tamaños"
-            styles={customStyles}
-            width="200px"
-            menuColor="red"
-            options={sizes}
-          />
-        </div>
-        <div className={styles.stock}>
-          <div onClick={addStock} className={styles.more}>
-            +
+  return (
+    <div className={styles.product}>
+      <Link href="/producto/1">
+        <div>
+          <div className={styles.image}>
+            <img src={`/products/${image}`} alt="" />
           </div>
-          <p>{stock}</p>
-          <div onClick={deleteStock} className={styles.more}>
-            -
+
+          <div className={styles.name}>
+            <h4>{name}</h4>
           </div>
         </div>
-        <Button buttonHandler={alert}>Comprar</Button>
+      </Link>
+      <div className={styles.price}>${price}</div>
+
+      <div className={styles.sizes}>
+        <Select
+          placeholder="Tamaños"
+          styles={customStyles}
+          width="200px"
+          menuColor="red"
+          options={sizes}
+        />
       </div>
-    </Link>
+      <div className={styles.stock}>
+        <div onClick={addStock} className={styles.more}>
+          +
+        </div>
+        <p>{stock}</p>
+        <div onClick={deleteStock} className={styles.more}>
+          -
+        </div>
+      </div>
+      <Button buttonHandler={addCart}>Comprar</Button>
+    </div>
   );
 };

@@ -1,15 +1,14 @@
-import Head from "next/head";
-import Input from "../components/input";
-import TitleSection from "../components/titleSection";
-import styles from "../styles pages/LogIn.module.css";
-import Button from "../components/button";
+import Input from "../input";
+import TitleSection from "../titleSection";
+import styles from "../../styles pages/Contact.module.css";
+import Button from "../button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import * as schemas from "../utils/validation";
+import * as schemas from "../../utils/validation";
 
-export default function LogIn() {
+export default function Contact() {
   const { register, watch, errors, handleSubmit } = useForm({
-    resolver: yupResolver(schemas.schemaLoginValidation),
+    resolver: yupResolver(schemas.schemaContactValidation),
   });
 
   const onSubmit = (data: object) => {
@@ -17,16 +16,13 @@ export default function LogIn() {
   };
 
   const inputs = [
+    { name: "name", placeholder: "Nombre", type: "text" },
     { name: "email", placeholder: "Correo Electronico", type: "email" },
-    { name: "password", placeholder: "Contraseña", type: "password" },
   ];
 
   return (
     <div>
-      <Head>
-        <title> Iniciar Sesion | Cuadros Marcel</title>
-      </Head>
-      <TitleSection>Inciar Sesion</TitleSection>
+      <TitleSection>Contacto</TitleSection>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.form}>
           {inputs.map((input) => (
@@ -40,6 +36,18 @@ export default function LogIn() {
               />
             </div>
           ))}
+          <div className={errors["message"] ? styles.inputError : styles.input}>
+            <textarea
+              ref={register}
+              placeholder={"Mensaje"}
+              name="message"
+              id="message"
+            ></textarea>
+          </div>
+          <div className={styles.error}>
+            <span>{errors["message"]?.message}</span>
+          </div>
+
           <div className={styles.input}>
             <Button type="submit" buttonHandler={null}>
               Iniciar Sesion

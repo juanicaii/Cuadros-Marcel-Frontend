@@ -19,11 +19,19 @@ import {
 const links = [
   { name: "Inicio", icon: () => <AiFillHome />, url: "/" },
   { name: "Productos", icon: () => <AiFillPicture />, url: "/productos/1" },
-  { name: "Listos para Enviar", icon: () => <FaShippingFast />, url: "/" },
-  { name: "Quienes Somos", icon: () => <FaUsers />, url: "/" },
-  { name: "Blog", icon: () => <FaMicroblog />, url: "/" },
-  { name: "Contacto", icon: () => <AiFillContacts />, url: "/" },
-  { name: "Localiza tu Envio", icon: () => <FaShippingFast />, url: "/" },
+  {
+    name: "Listos para Enviar",
+    icon: () => <FaShippingFast />,
+    url: "/envio-listo",
+  },
+  { name: "Quienes Somos", icon: () => <FaUsers />, url: "/nosotros" },
+  { name: "Blog", icon: () => <FaMicroblog />, url: "/blog" },
+  { name: "Contacto", icon: () => <AiFillContacts />, url: "/contacto" },
+  {
+    name: "Localiza tu Envio",
+    icon: () => <FaShippingFast />,
+    url: "/buscar-envio",
+  },
 ];
 
 export const Links = ({ name, Icon, selected, url, closeNav }) => {
@@ -43,6 +51,7 @@ export const Links = ({ name, Icon, selected, url, closeNav }) => {
     </>
   );
 };
+
 export const Menu = ({ isOpen, closeNav }) => {
   const router = useRouter();
 

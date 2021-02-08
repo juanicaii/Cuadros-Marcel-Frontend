@@ -7,16 +7,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as schemas from "../utils/validation";
 
-export default function LogIn() {
+export default function Register() {
   const { register, watch, errors, handleSubmit } = useForm({
-    resolver: yupResolver(schemas.schemaLoginValidation),
+    resolver: yupResolver(schemas.schemaRegisterValidation),
   });
-
   const onSubmit = (data: object) => {
     console.log(data);
   };
 
   const inputs = [
+    { name: "name", placeholder: "Nombre", type: "text" },
+    { name: "lastname", placeholder: "Apellido", type: "text" },
     { name: "email", placeholder: "Correo Electronico", type: "email" },
     { name: "password", placeholder: "Contraseña", type: "password" },
   ];
@@ -26,27 +27,27 @@ export default function LogIn() {
       <Head>
         <title> Iniciar Sesion | Cuadros Marcel</title>
       </Head>
-      <TitleSection>Inciar Sesion</TitleSection>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.form}>
+      <TitleSection>Crear Cuenta</TitleSection>
+      <div className={styles.form}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           {inputs.map((input) => (
             <div key={input.name} className={styles.input}>
               <Input
-                register={register}
                 error={errors[input.name]}
+                register={register}
                 type={input.type}
                 name={input.name}
                 placeholder={input.placeholder}
               />
             </div>
           ))}
-          <div className={styles.input}>
-            <Button type="submit" buttonHandler={null}>
+          <div>
+            <Button buttonHandler={null} type="submit">
               Iniciar Sesion
             </Button>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

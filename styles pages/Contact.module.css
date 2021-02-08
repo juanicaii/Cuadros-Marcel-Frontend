@@ -1,0 +1,101 @@
+.contacto {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 50%);
+  justify-content: center;
+}
+.form {
+  justify-content: center;
+  margin: 0 auto;
+}
+.title h1 {
+  color: white !important;
+}
+.input p {
+  position: absolute;
+  margin-left: auto;
+
+  margin-right: 10px;
+  left: auto;
+  right: auto;
+}
+.infoDiv {
+  background-color: var(--azul);
+}
+.input {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+.input textarea {
+  width: 300px;
+  height: 150px;
+  padding: 10px;
+  font-family: "raleway";
+  border-radius: 28px;
+  font-family: "raleway";
+  border-radius: 28px;
+  border: 3px solid var(--azul);
+  font-size: 16px;
+}
+.input textarea:focus {
+  outline: none;
+}
+.input textarea::placeholder {
+  text-align: center;
+  color: var(--azul);
+}
+.inputError {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+.inputError textarea {
+  justify-content: center;
+  width: 300px;
+  height: 150px;
+  padding: 10px;
+  font-family: "raleway";
+  border-radius: 28px;
+  font-family: "raleway";
+  border-radius: 28px;
+  border: 3px solid var(--red);
+  font-size: 16px;
+}
+.inputError textarea:focus {
+  outline: none;
+}
+.inputError textarea::placeholder {
+  text-align: center;
+  color: var(--azul);
+}
+.error {
+  color: red;
+  font-size: 12px;
+  text-align: center;
+  margin: -15px 10px auto;
+}
+
+.infoDiv {
+  min-height: 500px;
+}
+.info h4 {
+  margin-left: 120px;
+  font-family: "Oswald";
+  color: white;
+  font-size: 26px;
+}
+.info div svg {
+  font-size: 25px;
+}
+.info div,
+.info p {
+  color: white;
+  text-align: center;
+  font-family: "Raleway";
+  font-size: 18px;
+}
+@media (max-width: 640px) {
+  .contacto {
+    grid-template-columns: repeat(auto-fit, 100%);
+  }
+}

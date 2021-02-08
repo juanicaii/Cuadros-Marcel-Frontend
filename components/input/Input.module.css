@@ -1,20 +1,31 @@
 .input input {
-  border: none;
   width: 15em;
-  height: 40px;
+  height: 50px;
   border-radius: 2.8em;
   font-size: 2.5em;
   padding-left: 20px;
   font-family: var(--raleway);
   background: transparent;
   position: relative;
-
   border: 3px solid var(--azul);
 }
-.input input::placeholder {
+.inputError input {
+  width: 15em;
+  height: 50px;
+  border-radius: 2.8em;
+  font-size: 2.5em;
+  padding-left: 20px;
+  font-family: var(--raleway);
+  background: transparent;
+  position: relative;
+  border: 3px solid var(--red);
+}
+.input input::placeholder,
+.inputError input::placeholder {
   color: var(--azul);
 }
-.input input:focus {
+.input input:focus,
+.inputError input:focus {
   outline: none;
 }
 .inputIcon {
@@ -24,4 +35,12 @@
   pointer-events: none;
   padding-left: 13em;
   color: var(--azul);
+}
+.error {
+  margin: 5px;
+  font-size: 12px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  color: red;
 }
