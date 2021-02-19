@@ -1,62 +1,59 @@
-import styles from "./Menu.module.css";
-import { useState } from "react";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import {
-  AiFillHome,
-  AiFillPicture,
-  AiFillContacts,
-  AiFillCloseCircle,
-} from "react-icons/ai";
-import {
-  FaShippingFast,
-  FaUsers,
-  FaMicroblog,
-  FaUserCircle,
-  FaTimesCircle,
-} from "react-icons/fa";
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { AiFillHome, AiFillPicture, AiFillContacts } from 'react-icons/ai';
+import { FaShippingFast, FaUsers, FaMicroblog, FaUserCircle, FaTimesCircle } from 'react-icons/fa';
+import styles from './Menu.module.css';
 
 const links = [
-  { name: "Inicio", icon: () => <AiFillHome />, url: "/" },
-  { name: "Productos", icon: () => <AiFillPicture />, url: "/productos/1" },
+  { name: 'Inicio', icon: () => <AiFillHome />, url: '/' },
+  { name: 'Productos', icon: () => <AiFillPicture />, url: '/productos/1' },
   {
-    name: "Listos para Enviar",
+    name: 'Listos para Enviar',
     icon: () => <FaShippingFast />,
-    url: "/envio-listo",
+    url: '/envio-listo',
   },
-  { name: "Quienes Somos", icon: () => <FaUsers />, url: "/nosotros" },
-  { name: "Blog", icon: () => <FaMicroblog />, url: "/blog" },
-  { name: "Contacto", icon: () => <AiFillContacts />, url: "/contacto" },
+  { name: 'Quienes Somos', icon: () => <FaUsers />, url: '/nosotros' },
+  { name: 'Blog', icon: () => <FaMicroblog />, url: '/blog' },
+  { name: 'Contacto', icon: () => <AiFillContacts />, url: '/contacto' },
   {
-    name: "Localiza tu Envio",
+    name: 'Localiza tu Envio',
     icon: () => <FaShippingFast />,
-    url: "/buscar-envio",
+    url: '/buscar-envio',
   },
 ];
 
-export const Links = ({ name, Icon, selected, url, closeNav }) => {
-  return (
-    <>
-      <Link
-        href={url === "/productos/1" ? "/productos/[id]" : url}
-        as={url === "/productos/1" ? url : ""}
-      >
-        <a onClick={closeNav}>
-          <div className={`${styles.link} ${selected ? styles.selected : ""} `}>
-            <Icon />
-            <h4>{name}</h4>
-          </div>
-        </a>
-      </Link>
-    </>
-  );
-};
+interface ILinks {
+  name: string;
+  Icon: any;
+  selected: boolean;
+  url: string;
+  closeNav: () => {};
+}
+export const Links = ({ name, Icon, selected, url, closeNav }: ILinks) => (
+  <>
+    <Link
+      href={url === '/productos/1' ? '/productos/[id]' : url}
+      as={url === '/productos/1' ? url : ''}
+    >
+      <a onClick={closeNav}>
+        <div className={`${styles.link} ${selected ? styles.selected : ''} `}>
+          <Icon />
+          <h4>{name}</h4>
+        </div>
+      </a>
+    </Link>
+  </>
+);
 
-export const Menu = ({ isOpen, closeNav }) => {
+interface IMenu {
+  isOpen: boolean;
+  closeNav: () => void;
+}
+export const Menu = ({ isOpen, closeNav }: IMenu) => {
   const router = useRouter();
 
   return (
-    <div className={`${styles.menu} menu ${!isOpen ? styles.hide : ""}`}>
+    <div className={`${styles.menu} menu ${!isOpen ? styles.hide : ''}`}>
       <div className={styles.close}>
         <FaTimesCircle onClick={closeNav} />
       </div>

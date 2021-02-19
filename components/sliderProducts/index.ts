@@ -1,3 +1,3 @@
-import { SliderProducts } from "./SliderProducts";
+import { SliderProducts } from './SliderProducts';
 
 export default SliderProducts;

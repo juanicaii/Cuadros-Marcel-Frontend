@@ -6,8 +6,11 @@ import Filter from "../../components/filter";
 import { useState } from "react";
 import Product from "../../components/product";
 import Pagination from "../../components/pagination";
-export default function Products() {
+import * as constants from "../../constants/endpoints";
+
+export default function Products({ products, page, sizes, categories }) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const pageSize = 8;
   const router = useRouter();
   const { id } = router.query;
   const openFilter = () => {
@@ -18,6 +21,10 @@ export default function Products() {
     const pageSelected = e.target.innerText;
     router.push(`/productos/${pageSelected}`);
   };
+
+  if (!products && !categories && !sizes) {
+    return "Loading";
+  }
   return (
     <>
       <div>
@@ -45,24 +52,55 @@ export default function Products() {
               </span>
             </div>
           </div>
-          <Filter isFilterOpen={isFilterOpen} />
+          <Filter
+            categories={categories}
+            sizes={sizes}
+            isFilterOpen={isFilterOpen}
+          />
         </div>
       </div>
       <div className={styles.products}>
-        <Product name="Mirando al mar" image="image 1.png" />
-        <Product name="Mirando al mar" image="image 1.png" />
-        <Product name="Mirando al mar" image="image 1.png" />
-        <Product name="Mirando al mar" image="image 1.png" />
-        <Product name="Mirando al mar" image="image 1.png" />
+        {products.results.length > 0
+          ? products.results.map((product) => (
+              <Product
+                name={product.name}
+                image={product.img}
+                stock={product.stock}
+                sizes={product.sizeId}
+                categories={product.categoryId}
+              />
+            ))
+          : ""}
       </div>
 
       <div>
         <Pagination
           paginationHandler={paginationHandler}
-          count={5}
-          currentPage={id}
+          count={Math.ceil(products.count / pageSize)}
+          currentPage={page}
         />
       </div>
     </>
   );
+}
+
+export async function getServerSideProps({ params, resolvedUrl }) {
+  const param = params.id != 1 ? `?page=${params.id}` : "";
+  const query =
+    resolvedUrl.slice(12) == `?id=${params.id}` ? "" : resolvedUrl.slice(12);
+  console.log(resolvedUrl.slice(12) == `?id=${params.id}`);
+
+  const productsFetch = await fetch(
+    `${constants.SERVER_PATH}/api/products/${param}${query}`
+  );
+
+  const categoryFetch = await fetch(`${constants.SERVER_PATH}/api/category/`);
+  const sizeFetch = await fetch(`${constants.SERVER_PATH}/api/size`);
+  const products: [] = await productsFetch.json();
+  const categories: [] = await categoryFetch.json();
+  const sizes: [] = await sizeFetch.json();
+  console.log(products);
+
+  // Pass post data to the page via props
+  return { props: { products, page: params.id, categories, sizes } };
 }

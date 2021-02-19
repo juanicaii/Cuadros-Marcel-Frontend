@@ -1,14 +1,14 @@
-import Head from "next/head";
-import Input from "../components/input";
-import TitleSection from "../components/titleSection";
-import styles from "../styles pages/LogIn.module.css";
-import Button from "../components/button";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import * as schemas from "../utils/validation";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import Head from 'next/head';
+import Input from '../components/input';
+import TitleSection from '../components/titleSection';
+import styles from '../styles pages/LogIn.module.css';
+import Button from '../components/button';
+import * as schemas from '../utils/validation';
 
 export default function LogIn() {
-  const { register, watch, errors, handleSubmit } = useForm({
+  const { register, errors, handleSubmit } = useForm({
     resolver: yupResolver(schemas.schemaLoginValidation),
   });
 
@@ -17,8 +17,8 @@ export default function LogIn() {
   };
 
   const inputs = [
-    { name: "email", placeholder: "Correo Electronico", type: "email" },
-    { name: "password", placeholder: "Contraseña", type: "password" },
+    { name: 'email', placeholder: 'Correo Electronico', type: 'email' },
+    { name: 'password', placeholder: 'Contraseña', type: 'password' },
   ];
 
   return (

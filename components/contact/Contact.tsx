@@ -1,13 +1,13 @@
-import Input from "../input";
-import TitleSection from "../titleSection";
-import styles from "../../styles pages/Contact.module.css";
-import Button from "../button";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import * as schemas from "../../utils/validation";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import Input from '../input';
+import TitleSection from '../titleSection';
+import styles from '../../styles pages/Contact.module.css';
+import Button from '../button';
+import * as schemas from '../../utils/validation';
 
 export default function Contact() {
-  const { register, watch, errors, handleSubmit } = useForm({
+  const { register, errors, handleSubmit } = useForm({
     resolver: yupResolver(schemas.schemaContactValidation),
   });
 
@@ -16,8 +16,8 @@ export default function Contact() {
   };
 
   const inputs = [
-    { name: "name", placeholder: "Nombre", type: "text" },
-    { name: "email", placeholder: "Correo Electronico", type: "email" },
+    { name: 'name', placeholder: 'Nombre', type: 'text' },
+    { name: 'email', placeholder: 'Correo Electronico', type: 'email' },
   ];
 
   return (
@@ -36,16 +36,11 @@ export default function Contact() {
               />
             </div>
           ))}
-          <div className={errors["message"] ? styles.inputError : styles.input}>
-            <textarea
-              ref={register}
-              placeholder={"Mensaje"}
-              name="message"
-              id="message"
-            ></textarea>
+          <div className={errors.message ? styles.inputError : styles.input}>
+            <textarea ref={register} placeholder="Mensaje" name="message" id="message" />
           </div>
           <div className={styles.error}>
-            <span>{errors["message"]?.message}</span>
+            <span>{errors.message?.message}</span>
           </div>
 
           <div className={styles.input}>

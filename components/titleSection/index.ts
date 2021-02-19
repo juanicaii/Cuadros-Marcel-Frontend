@@ -1,3 +1,3 @@
-import { TitleSection } from "./TitleSection";
+import { TitleSection } from './TitleSection';
 
 export default TitleSection;
