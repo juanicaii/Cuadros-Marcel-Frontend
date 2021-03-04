@@ -3,7 +3,7 @@ import styles from '../styles pages/Home.module.css';
 import SliderImage from '../components/sliderImage';
 import TitleSection from '../components/titleSection';
 import SliderProducts from '../components/sliderProducts';
-import * as constants from '../constants/endpoints';
+import * as constants from '../utils/constants';
 
 interface IHome {
   products: {
@@ -18,6 +18,8 @@ interface IHome {
   };
 }
 export default function Home({ products }: IHome) {
+
+
   return (
     <div className={styles.container}>
       <Head>

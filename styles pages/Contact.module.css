@@ -22,9 +22,16 @@
   background-color: var(--azul);
 }
 .input {
-  margin: 20px;
+  height:14em!important;
+
   display: flex;
   justify-content: center;
+}
+.button{
+  display:flex;
+  justify-content:center;
+  margin-top: 10px;
+  margin-right: 13px;
 }
 .input textarea {
   width: 300px;
@@ -45,8 +52,10 @@
   color: var(--azul);
 }
 .inputError {
-  margin: 20px;
+  height:30em!important;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 .inputError textarea {
@@ -72,7 +81,7 @@
   color: red;
   font-size: 12px;
   text-align: center;
-  margin: -15px 10px auto;
+
 }
 
 .infoDiv {

@@ -1,23 +1,30 @@
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import Input from '../input';
-import TitleSection from '../titleSection';
-import styles from '../../styles pages/Contact.module.css';
-import Button from '../button';
-import * as schemas from '../../utils/validation';
+import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { yupResolver } from "@hookform/resolvers/yup";
+import Input from "../input";
+import TitleSection from "../titleSection";
+import styles from "../../styles pages/Contact.module.css";
+import Button from "../button";
+import * as schemas from "../../utils/validation";
+
 
 export default function Contact() {
+
+
+
+
   const { register, errors, handleSubmit } = useForm({
     resolver: yupResolver(schemas.schemaContactValidation),
   });
+
 
   const onSubmit = (data: object) => {
     console.log(data);
   };
 
   const inputs = [
-    { name: 'name', placeholder: 'Nombre', type: 'text' },
-    { name: 'email', placeholder: 'Correo Electronico', type: 'email' },
+    { name: "name", placeholder: "Nombre", type: "text" },
+    { name: "email", placeholder: "Correo Electronico", type: "email" }
   ];
 
   return (
@@ -36,14 +43,15 @@ export default function Contact() {
               />
             </div>
           ))}
-          <div className={errors.message ? styles.inputError : styles.input}>
+          <div className={errors.message ? styles.inputError : styles.input} style={{ height: "30em!important" }}>
             <textarea ref={register} placeholder="Mensaje" name="message" id="message" />
-          </div>
-          <div className={styles.error}>
-            <span>{errors.message?.message}</span>
+            <div className={styles.error}>
+              <span>{errors.message?.message}</span>
+            </div>
           </div>
 
-          <div className={styles.input}>
+
+          <div className={styles.button}>
             <Button type="submit" buttonHandler={null}>
               Iniciar Sesion
             </Button>

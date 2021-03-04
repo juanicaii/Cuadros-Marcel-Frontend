@@ -18,13 +18,14 @@
   cursor: pointer;
 }
 .price {
+
   font-size: 3em;
   margin-top: -20px;
   margin-bottom: 20px;
   font-family: var(--raleway-bold);
 }
 .name {
-  font-size: 4em;
+  font-size: 3.8em;
   color: var(--azul);
   font-family: var(--raleway-bold);
   cursor: pointer;

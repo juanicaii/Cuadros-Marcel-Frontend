@@ -1,7 +1,10 @@
-import styles from './Product.module.css';
-import Select from 'react-select';
-import Link from 'next/link';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Select from 'react-select';
+import Swal from 'sweetalert2';
+import Link from 'next/link';
+import styles from './Product.module.css';
+import cartActions from '../../redux/actions/cartActions';
 import Button from '../button';
 
 const customStyles = {
@@ -52,18 +55,37 @@ const customStyles = {
     color: 'var(--azul)',
   }),
 };
-
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer);
+    toast.addEventListener('mouseleave', Swal.resumeTimer);
+  },
+});
 interface IProduct {
+  id: number;
   name: String;
   image: String;
-  stock: Number;
-  sizes: Array<{ id: Number; name: String; price: Number }>;
+  stock: number;
+  sizes: Array<{ id: number; name: String; price: number }>;
   categories: Array<{}>;
 }
-export const Product = ({ name, image, stock, sizes, categories }: IProduct) => {
+
+export const Product = ({ id, name, image, stock, sizes, categories }: IProduct) => {
   const [cant, setCant] = useState(1);
-  const [price, setPrice] = useState(1500);
+  const [price, setPrice] = useState(sizes.length ? sizes[0].price : 1000);
   const [selected, setSelected] = useState();
+  const cart = useSelector((state) => state.cart);
+  const stockProducts =
+    cart.products.filter((state) => state.id === id).length > 0
+      ? stock - cart.products.filter((state) => state.id === id)[0].cant
+      : stock;
+
+  const dispatch = useDispatch();
   const sizesSelect = sizes.map((siz) => ({
     value: siz.id,
     label: siz.name,
@@ -71,18 +93,40 @@ export const Product = ({ name, image, stock, sizes, categories }: IProduct) => 
   }));
 
   const addStock = () => {
-    if (cant < stock) {
+    if (cant < stockProducts) {
       setCant(cant + 1);
     }
   };
   const deleteStock = () => {
-    if (cant != 1) {
+    if (cant !== 1 && cant !== 0) {
       setCant(cant - 1);
     }
   };
 
-  const addCart = () => {
-    alert('hola');
+  const addCart = (product) => {
+    Toast.fire({
+      icon: 'success',
+      title: 'Producto agregado correctamente al carrito',
+    });
+    if (product.cant !== 0) {
+      if (cart.products.length > 0) {
+        if (cart.products.some((state) => state.id === product.id)) {
+          dispatch(cartActions.addMoreCant(product.id, product.cant));
+          setCant(0);
+        } else {
+          setCant(0);
+          dispatch(cartActions.addNewProduct(cart.cant + product.cant, product));
+        }
+      } else {
+        setCant(0);
+        dispatch(cartActions.addNewProduct(cart.cant + product.cant, product));
+      }
+    } else {
+      Toast.fire({
+        icon: 'error',
+        title: 'Para agregar un producto al carrito debe contener almenos una unidad',
+      });
+    }
   };
 
   return (
@@ -98,7 +142,7 @@ export const Product = ({ name, image, stock, sizes, categories }: IProduct) => 
           </div>
         </div>
       </Link>
-      <div className={styles.price}>${price}</div>
+      <div className={styles.price}> {price !== -1 ? `$${price}` : ''}</div>
 
       <div className={styles.sizes}>
         <Select
@@ -122,7 +166,14 @@ export const Product = ({ name, image, stock, sizes, categories }: IProduct) => 
           +
         </div>
       </div>
-      <Button type="button" buttonHandler={addCart}>
+
+      <Button
+        disabled={stockProducts === 0 ? true : false}
+        type="button"
+        buttonHandler={() => {
+          addCart({ id, name, image, cant, price });
+        }}
+      >
         Comprar
       </Button>
     </div>
